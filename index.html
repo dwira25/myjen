@@ -93,8 +93,26 @@
     <meta property="og:description" content="Profil resmi Mayjen TNI (Purn.) dr. Subandono Bambang Indrasto. Menelusuri jejak pengabdian sebagai Dokter, Prajurit, dan Pemimpin.">
     <meta property="og:image" content="assets/dokter.jpg">
     <link rel="icon" type="image/png" href="assets/logo-pri.png">
+    <link rel="stylesheet" href="assets/preloader.css">
+    <link rel="preload" as="image" href="assets/logo-pri-hd.png">
 </head>
 <body class="font-body text-charcoal bg-white antialiased">
+
+    <!-- Preloader -->
+    <div id="pri-preloader">
+        <div class="pri-glow"></div>
+        <div class="pri-emblem">
+            <div class="pri-track"></div>
+            <div class="pri-ring"></div>
+            <img src="assets/logo-pri-hd.png" alt="Partai Rakyat Indonesia" class="pri-logo">
+        </div>
+        <div class="pri-text">
+            <div class="pri-title">Partai Rakyat Indonesia</div>
+            <div class="pri-sub">Menyiapkan Halaman</div>
+        </div>
+        <div class="pri-bar"><div class="pri-bar-fill"></div></div>
+    </div>
+
 
     <!-- Navbar -->
     <nav class="bg-navy fixed w-full z-50 shadow-lg transition-all duration-300" id="navbar">
@@ -455,5 +473,6 @@
             });
         }
     </script>
+    <script src="assets/preloader.js"></script>
 </body>
 </html>

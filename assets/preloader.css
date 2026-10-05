@@ -1,0 +1,161 @@
+/* ===== Preloader: Partai Rakyat Indonesia ===== */
+#pri-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 40%, #14293f 0%, #0B1F33 55%, #060f1a 100%);
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+#pri-preloader.pri-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Background subtle pulse glow */
+#pri-preloader .pri-glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 164, 93, 0.18) 0%, transparent 65%);
+    animation: priGlow 2.6s ease-in-out infinite;
+}
+
+@keyframes priGlow {
+    0%, 100% { transform: scale(0.85); opacity: 0.6; }
+    50%      { transform: scale(1.1);  opacity: 1; }
+}
+
+/* Logo wrapper: ring + logo */
+#pri-preloader .pri-emblem {
+    position: relative;
+    width: 168px;
+    height: 168px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Rotating conic gold ring (masks a hole in the middle) */
+#pri-preloader .pri-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg,
+        rgba(200, 164, 93, 0) 0deg,
+        rgba(200, 164, 93, 0.15) 90deg,
+        #C8A45D 200deg,
+        #f0dcae 250deg,
+        #C8A45D 300deg,
+        rgba(200, 164, 93, 0) 360deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 5px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 5px));
+    animation: priSpin 1.5s linear infinite;
+}
+
+/* Static faded track behind the ring */
+#pri-preloader .pri-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 164, 93, 0.18);
+}
+
+@keyframes priSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* The logo itself */
+#pri-preloader .pri-logo {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06), 0 12px 40px rgba(0, 0, 0, 0.55);
+    animation: priPop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both,
+               priBreath 2.6s ease-in-out 0.9s infinite;
+}
+
+@keyframes priPop {
+    0%   { transform: scale(0.4); opacity: 0; filter: blur(6px); }
+    60%  { transform: scale(1.06); opacity: 1; filter: blur(0); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes priBreath {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.035); }
+}
+
+/* Text under the emblem */
+#pri-preloader .pri-text {
+    margin-top: 34px;
+    text-align: center;
+    z-index: 2;
+    animation: priFadeUp 0.8s ease 0.35s both;
+}
+
+#pri-preloader .pri-title {
+    font-family: "Manrope", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.42em;
+    color: #C8A45D;
+    text-transform: uppercase;
+    padding-left: 0.42em; /* balance the tracking */
+}
+
+#pri-preloader .pri-sub {
+    margin-top: 8px;
+    font-family: "Lora", serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+}
+
+@keyframes priFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Progress bar */
+#pri-preloader .pri-bar {
+    position: relative;
+    margin-top: 30px;
+    width: 190px;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    z-index: 2;
+    animation: priFadeUp 0.8s ease 0.5s both;
+}
+
+#pri-preloader .pri-bar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #B82025 0%, #C8A45D 70%, #f0dcae 100%);
+    box-shadow: 0 0 12px rgba(200, 164, 93, 0.7);
+    transition: width 0.25s ease;
+}
+
+@media (max-width: 480px) {
+    #pri-preloader .pri-emblem { width: 140px; height: 140px; }
+    #pri-preloader .pri-logo   { width: 106px; height: 106px; }
+    #pri-preloader .pri-glow   { width: 320px; height: 320px; }
+    #pri-preloader .pri-sub    { font-size: 17px; }
+}
